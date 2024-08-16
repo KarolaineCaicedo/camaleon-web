@@ -19,10 +19,10 @@
 		<input type="text" id="ubicacion" name="ubicacion" value="${bodegas.ubicacion}" />
 		<br/>
 		Capacidad
-		<input type="text" id="capacidad" name="capacidad" value="${bodegas.capacidad}" />
+		<input type="number" id="capacidad" name="capacidad" value="${bodegas.capacidad}" />
 		<br/>
 		IdSucursales
-		<input type="text" id="idSucursales" name="idSucursales" value="${bodegas.idSucursales}" />
+		<input type="number" id="idSucursales" name="idSucursales" value="${bodegas.idSucursales}" />
 		<br/>
 		
 		

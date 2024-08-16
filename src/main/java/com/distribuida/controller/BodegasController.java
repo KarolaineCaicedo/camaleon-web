@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.distribuida.dao.BodegaDAO;
-import com.distribuida.entities.Bodega;
+import com.distribuida.dao.BodegasDAO;
+import com.distribuida.entities.Bodegas;
 @Controller
 @RequestMapping("/bodegas")     //path Principal
-public class BodegaController {
+public class BodegasController {
 	//JSP - Java server Page, son las paginas web ded tecnologias java
 	@Autowired
-	private BodegaDAO bodegaDAO;
+	private BodegasDAO bodegasDAO;
 	@GetMapping("/findAll")      // path secundario
 	public String findAll(ModelMap  modelMap) {
 		//try {
-			List<Bodega> Bodegas = bodegaDAO.findAll();
-			modelMap.addAttribute("Bodegas",Bodegas);    //EJ : Clave = KeyClientes , valor = clientes
+			List<Bodegas> bodegas = bodegasDAO.findAll();
+			modelMap.addAttribute("Bodegas",bodegas);    //EJ : Clave = KeyClientes , valor = clientes
 
 			return "listar-bodegas";  //nombre del formulario EJ.listar-clientes.html o listar-clientes.jsp
 	//} catch (Exception e) {
@@ -37,8 +37,8 @@ public class BodegaController {
 			) {
 	//	try {
 			if(idBodegas !=null) {
-				Bodega Bodega = bodegaDAO.findOne(idBodegas);
-				modelMap.addAttribute("Bodega", Bodega);
+				Bodegas bodegas = bodegasDAO.findOne(idBodegas);
+				modelMap.addAttribute("bodegas", bodegas);
 			}
 			if(opcion == 1) return "add-bodegas";  //Actualizacion
 			else return "del-bodegas";             //Eliminación
@@ -57,11 +57,11 @@ public class BodegaController {
 			) {
 	//	try {
 			if(idBodegas == null) {
-				Bodega bodega = new Bodega(0, nombre, ubicacion, capacidad,idSucursales);
-				bodegaDAO.add(bodega);
+				Bodegas bodegas = new Bodegas(0, nombre, ubicacion, capacidad,idSucursales);
+				bodegasDAO.add(bodegas);
 			}else {
-				Bodega bodega = new Bodega(idBodegas, nombre, ubicacion, capacidad, idSucursales);
-				bodegaDAO.up(bodega);
+				Bodegas bodegas = new Bodegas(idBodegas, nombre, ubicacion, capacidad, idSucursales);
+				bodegasDAO.up(bodegas);
 	//	} catch (Exception e) {
 	//		// TODO: handle exception
 	//	}
@@ -70,14 +70,10 @@ public class BodegaController {
 		return "redirect:/bodegas/findAll";    //ir a formulario web por path o url.
 	}
 	@GetMapping("/del")
-	public String del(@RequestParam(value ="idBodegas", required = false) @Nullable Integer idBodegas) {
-	    if (idBodegas != null) {
-	        bodegaDAO.del(idBodegas);
-	    } else {
-	        // Manejar el caso en que idBodegas es nulo
-	        // Por ejemplo, puedes mostrar un mensaje de error o redirigir a una página de error
-	        return "del-bodegas";
-	    }
+	public String del(@RequestParam ("idBodegas") @Nullable Integer idBodegas) {
+	
+	        bodegasDAO.del(idBodegas);
+	    
 	    return "redirect:/bodegas/findAll";
 	}
-}
+} 

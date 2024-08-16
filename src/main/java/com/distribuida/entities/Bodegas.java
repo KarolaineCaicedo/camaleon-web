@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table (name = "bodegas")
 
-public class Bodega {
+public class Bodegas {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +35,9 @@ public class Bodega {
 	
 	
 	
-	public Bodega() {}
+	public Bodegas() {}
 
-	public Bodega(int idBodegas, String nombre, String ubicacion, int capacidad, int idSucursales) {
+	public Bodegas(int idBodegas, String nombre, String ubicacion, int capacidad, int idSucursales) {
 		
 		this.idBodegas = idBodegas;
 		this.nombre = nombre;
@@ -97,7 +97,7 @@ public class Bodega {
 
 	@Override
 	public String toString() {
-		return "Bodega [idBodegas=" + idBodegas + ", nombre=" + nombre + ", Ubicacion=" + ubicacion + ", capacidad="
+		return "Bodega [idBodegas=" + idBodegas + ", nombre=" + nombre + ", ubicacion=" + ubicacion + ", capacidad="
 				+ capacidad + ", idSucursales=" + idSucursales + "]";
 	}
 	
